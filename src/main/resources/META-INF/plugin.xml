@@ -1,22 +1,14 @@
 <idea-plugin>
     <id>dev.dohpaz.php-extras</id>
     <name>PHP Extras</name>
-    <version>2.2.0</version>
-    <vendor email="support@dohpaz.dev">Ken Stanley</vendor>
-
-    <description><![CDATA[
-    Replaced by description.html .....................
-    ]]></description>
-
-    <change-notes><![CDATA[
-    Replaced by change-notes.html ....................
-    ]]></change-notes>
+    <vendor
+            url="https://github.com/d42ohpaz/php-extras"
+            email="support@dohpaz.dev">
+        Ken Stanley
+    </vendor>
 
     <depends>com.jetbrains.php</depends>
     <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.modules.php-capable</depends>
-
-    <idea-version since-build="212.5712.51" />
 
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity order="first" implementation="dev.dohpaz.phpExtras.composer.packages.RootPostStartupActivity" />
