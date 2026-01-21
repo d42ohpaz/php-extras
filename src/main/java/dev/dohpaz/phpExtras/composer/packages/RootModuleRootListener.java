@@ -114,7 +114,7 @@ public class RootModuleRootListener implements ModuleRootListener {
 
             includePathManager.setIncludePath(includePaths);
 
-            project.getMessageBus().syncPublisher(ProjectTopics.PROJECT_ROOTS);
+            project.getMessageBus().syncPublisher(ModuleRootListener.TOPIC);
             this.contentRoots = null;
         });
     }

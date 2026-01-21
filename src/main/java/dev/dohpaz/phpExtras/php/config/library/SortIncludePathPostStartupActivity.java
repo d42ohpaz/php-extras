@@ -1,8 +1,8 @@
 package dev.dohpaz.phpExtras.php.config.library;
 
-import com.intellij.ProjectTopics;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ModuleRootListener;
 import com.intellij.openapi.startup.StartupActivity;
 import com.jetbrains.php.config.library.PhpIncludePathManager;
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +15,6 @@ public class SortIncludePathPostStartupActivity implements StartupActivity, Dumb
         project
             .getMessageBus()
             .connect()
-            .subscribe(ProjectTopics.PROJECT_ROOTS, new SortIncludePathListener(includePathManager));
+            .subscribe(ModuleRootListener.TOPIC, new SortIncludePathListener(includePathManager));
     }
 }
