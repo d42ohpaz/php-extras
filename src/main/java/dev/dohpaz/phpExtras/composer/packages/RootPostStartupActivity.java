@@ -7,7 +7,6 @@ import com.intellij.openapi.startup.StartupActivity;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.jetbrains.php.config.library.PhpIncludePathManager;
-import dev.dohpaz.phpExtras.php.config.library.SortIncludePathListener;
 import org.jetbrains.annotations.NotNull;
 
 public class RootPostStartupActivity implements StartupActivity, DumbAware {
