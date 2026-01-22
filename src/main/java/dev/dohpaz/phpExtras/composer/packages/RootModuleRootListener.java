@@ -47,7 +47,7 @@ public class RootModuleRootListener implements ModuleRootListener {
          * definition(s) exist on the file system, then remove them from the vendor folder of the project's include
          * paths.
          */
-        if (this.composerJson == null) {
+        if (composerJson == null) {
             return;
         }
 
@@ -55,7 +55,7 @@ public class RootModuleRootListener implements ModuleRootListener {
         final VirtualFile[] globalContentRoots = getContentRoots(project);
 
         // If the global contentRoots has more roots than the local contentRoots, then we are removing a content root.
-        if (globalContentRoots.length > this.contentRoots.length) {
+        if (globalContentRoots.length > contentRoots.length) {
             removeIncludePath(project);
         } else {
             addIncludePath(project);
@@ -77,8 +77,8 @@ public class RootModuleRootListener implements ModuleRootListener {
 
             // If someone were to go to Preferences > Directories and remove all content roots
             // from the project, then the global contentRoots will be null.
-            if (this.contentRoots != null) {
-                globalContentRoots = ContainerUtil.subtract(Arrays.asList(this.contentRoots), Arrays.asList(getContentRoots(project)));
+            if (contentRoots != null) {
+                globalContentRoots = ContainerUtil.subtract(Arrays.asList(contentRoots), Arrays.asList(getContentRoots(project)));
             } else {
                 globalContentRoots = Arrays.asList(getContentRoots(project));
             }
@@ -114,7 +114,7 @@ public class RootModuleRootListener implements ModuleRootListener {
             includePathManager.setIncludePath(includePaths);
 
             project.getMessageBus().syncPublisher(ModuleRootListener.TOPIC);
-            this.contentRoots = null;
+            contentRoots = null;
         });
     }
 
@@ -176,7 +176,7 @@ public class RootModuleRootListener implements ModuleRootListener {
             }
 
             project.getMessageBus().syncPublisher(ModuleRootListener.TOPIC);
-            this.contentRoots = null;
+            contentRoots = null;
         });
     }
 
