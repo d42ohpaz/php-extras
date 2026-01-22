@@ -173,7 +173,6 @@ public class RootModuleRootListener implements ModuleRootListener {
                 }
             } catch (IOException e) {
                 NotificationUtil.error(project, module != null ? module : "unknown", e.toString());
-                e.printStackTrace();
             }
 
             project.getMessageBus().syncPublisher(ModuleRootListener.TOPIC);
