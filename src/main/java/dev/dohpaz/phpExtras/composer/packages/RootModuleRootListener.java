@@ -2,7 +2,6 @@ package dev.dohpaz.phpExtras.composer.packages;
 
 import com.google.gson.JsonObject;
 import com.google.gson.stream.MalformedJsonException;
-import com.intellij.ProjectTopics;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ModuleRootEvent;
@@ -176,7 +175,7 @@ public class RootModuleRootListener implements ModuleRootListener {
                 e.printStackTrace();
             }
 
-            project.getMessageBus().syncPublisher(ProjectTopics.PROJECT_ROOTS);
+            project.getMessageBus().syncPublisher(ModuleRootListener.TOPIC);
             this.contentRoots = null;
         });
     }
