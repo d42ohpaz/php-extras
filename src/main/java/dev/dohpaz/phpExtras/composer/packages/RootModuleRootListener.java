@@ -14,6 +14,7 @@ import com.intellij.util.containers.ContainerUtil;
 import com.jetbrains.php.composer.ComposerConfigUtils;
 import com.jetbrains.php.config.library.PhpIncludePathManager;
 import dev.dohpaz.phpExtras.NotificationUtil;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -181,15 +182,16 @@ public class RootModuleRootListener implements ModuleRootListener {
     }
 
     @NotNull
-    private VirtualFile[] getContentRoots(Project project) {
+    private VirtualFile @NotNull [] getContentRoots(Project project) {
         return ProjectRootManager.getInstance(project).getContentRoots();
     }
 
-    private List<String> getIncludePaths() {
+    @Contract(" -> new")
+    private @NotNull List<String> getIncludePaths() {
         return includePathManager.getIncludePath();
     }
 
-    private @Nullable String getPackageName(VirtualFile root) throws IOException {
+    private @Nullable String getPackageName(@NotNull VirtualFile root) throws IOException {
         final String contentRootPath = root.getCanonicalPath();
         final VirtualFile contentComposerJson = localFileSystem.findFileByPath(contentRootPath + "/composer.json");
 
@@ -204,7 +206,7 @@ public class RootModuleRootListener implements ModuleRootListener {
             : null;
     }
 
-    private String getVendorDirectory(Project project) {
+    private @NotNull String getVendorDirectory(@NotNull Project project) {
         final String basePath = project.getBasePath();
         final Pair<String, String> composerDirectories = ComposerConfigUtils.getVendorAndBinDirs(composerJson);
 

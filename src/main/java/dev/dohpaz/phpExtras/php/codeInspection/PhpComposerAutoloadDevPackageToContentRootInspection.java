@@ -122,7 +122,7 @@ public class PhpComposerAutoloadDevPackageToContentRootInspection extends PhpIns
                 }
             }
 
-            public void makeReport(JsonProperty property) {
+            public void makeReport(@NotNull JsonProperty property) {
                 Path path = toAbsolutePath(project, JsonPsiUtil.stripQuotes(Objects.requireNonNull(property.getValue()).getText()));
                 if (path == null) {
                     return;
