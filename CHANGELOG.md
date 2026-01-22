@@ -15,6 +15,7 @@
 * Update build system to use IntelliJ Platform Gradle Plugin (2.x)
 * Update minimum version dependency to 2024.2 (242.20224.300)
 * Internal code cleanup for future me
+* Build changeNotes using CHANGELOG.md
 
 ### Added
 
