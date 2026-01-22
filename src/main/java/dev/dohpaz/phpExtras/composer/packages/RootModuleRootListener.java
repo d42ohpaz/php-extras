@@ -52,10 +52,10 @@ public class RootModuleRootListener implements ModuleRootListener {
         }
 
         final Project project = event.getProject();
-        final VirtualFile[] contentRoots = getContentRoots(project);
+        final VirtualFile[] globalContentRoots = getContentRoots(project);
 
         // If the global contentRoots has more roots than the local contentRoots, then we are removing a content root.
-        if (contentRoots.length > this.contentRoots.length) {
+        if (globalContentRoots.length > this.contentRoots.length) {
             removeIncludePath(project);
         } else {
             addIncludePath(project);
@@ -72,18 +72,18 @@ public class RootModuleRootListener implements ModuleRootListener {
             final List<String> includePaths = getIncludePaths();
             final String vendorDirectory = getVendorDirectory(project);
 
-            Collection<VirtualFile> contentRoots;
+            Collection<VirtualFile> globalContentRoots;
             String module = "unknown";
 
             // If someone were to go to Preferences > Directories and remove all content roots
             // from the project, then the global contentRoots will be null.
             if (this.contentRoots != null) {
-                contentRoots = ContainerUtil.subtract(Arrays.asList(this.contentRoots), Arrays.asList(getContentRoots(project)));
+                globalContentRoots = ContainerUtil.subtract(Arrays.asList(this.contentRoots), Arrays.asList(getContentRoots(project)));
             } else {
-                contentRoots = Arrays.asList(getContentRoots(project));
+                globalContentRoots = Arrays.asList(getContentRoots(project));
             }
 
-            for (VirtualFile contentRoot : contentRoots) {
+            for (VirtualFile contentRoot : globalContentRoots) {
                 VirtualFile compositeFile;
 
                 try {
@@ -125,7 +125,7 @@ public class RootModuleRootListener implements ModuleRootListener {
      */
     private void removeIncludePath(Project project) {
         ApplicationManager.getApplication().invokeLater(() -> {
-            final VirtualFile[] contentRoots = getContentRoots(project);
+            final VirtualFile[] globalContentRoots = getContentRoots(project);
             final List<String> includePaths = getIncludePaths();
 
             String module = "unknown";
@@ -134,7 +134,7 @@ public class RootModuleRootListener implements ModuleRootListener {
                 final List<String> toRemove = new LinkedList<>();
                 final String vendorDirectory = getVendorDirectory(project);
 
-                for (VirtualFile contentRoot : contentRoots) {
+                for (VirtualFile contentRoot : globalContentRoots) {
                     VirtualFile compositeFile;
 
                     try {
