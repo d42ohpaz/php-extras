@@ -140,7 +140,7 @@ public class RootModuleRootListener implements ModuleRootListener {
                     try {
                         module = getPackageName(contentRoot);
 
-                        if (module == null || module.equals("")) {
+                        if (module == null || module.isEmpty()) {
                             continue;
                         }
 
@@ -166,7 +166,7 @@ public class RootModuleRootListener implements ModuleRootListener {
                     }
                 }
 
-                if (toRemove.size() > 0) {
+                if (!toRemove.isEmpty()) {
                     includePaths.removeAll(toRemove);
                     includePathManager.setIncludePath(includePaths);
                 }
